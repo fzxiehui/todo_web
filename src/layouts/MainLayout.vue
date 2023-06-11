@@ -23,10 +23,36 @@
           TODO
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <!-- 用户头像 -->
+        <q-btn-dropdown
+          flat
+          dense>
+          <template v-slot:label>
+            <q-chip>
+              <q-avatar>
+                <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+              </q-avatar>
+              John
+            </q-chip>
+          </template>
+          <q-list>
+            <q-item clickable v-close-popup @click="onItemClick">
+              <q-item-section>
+                <q-item-label>Photos</q-item-label>
+              </q-item-section>
+            </q-item>
+
+            <q-item clickable v-close-popup @click="onItemClick">
+              <q-item-section>
+                <q-item-label>Videos</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
       </q-toolbar>
     </q-header>
 
+    <!-- 左侧抽屉 -->
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
@@ -47,6 +73,7 @@
       </q-list>
     </q-drawer>
 
+    <!-- 主体内容 -->
     <q-page-container>
       <router-view />
     </q-page-container>
