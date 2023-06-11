@@ -1,4 +1,12 @@
 <template>
+  <!-- 
+    Docs: 
+      http://www.quasarchs.com/layout/layout 
+    查看 view 属性
+
+    Icon:
+      https://fonts.google.com/icons?icon.set=Material+Icons
+  -->
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
@@ -12,7 +20,7 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          TODO
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
@@ -28,7 +36,7 @@
         <q-item-label
           header
         >
-          Essential Links
+          TODO List
         </q-item-label>
 
         <EssentialLink
