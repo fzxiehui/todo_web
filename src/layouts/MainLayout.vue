@@ -53,8 +53,19 @@
           header
         >
           TODO List
-        </q-item-label>
+          <q-input bottom-slots v-model="text" label="Search" counter :dense="dense">
+            <template v-slot:prepend>
+              <q-icon name="search" />
+            </template>
+            <template v-slot:append>
+              <q-icon name="close" @click="text = ''" class="cursor-pointer"></q-icon>
+            </template>
 
+            <template v-slot:hint>
+              Please enter the keyword.
+            </template>
+          </q-input>
+        </q-item-label>
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
@@ -150,11 +161,13 @@ export default defineComponent({
     ];
     const leftDrawerOpen = ref(false)
     const avatarURL = "public/icons/avatar.jpg"
+    const text = '' 
 
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
       username,
+      text,
       avatarURL,
       avatarActions,
       toggleLeftDrawer () {
