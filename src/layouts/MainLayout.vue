@@ -23,32 +23,22 @@
           TODO
         </q-toolbar-title>
 
-        <!-- 用户头像 -->
-        <q-btn-dropdown
-          flat
-          dense>
-          <template v-slot:label>
-            <q-chip>
-              <q-avatar>
-                <img src="https://cdn.quasar.dev/img/boy-avatar.png">
-              </q-avatar>
-              John
-            </q-chip>
-          </template>
-          <q-list>
-            <q-item clickable v-close-popup @click="onItemClick">
-              <q-item-section>
-                <q-item-label>Photos</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-close-popup @click="onItemClick">
-              <q-item-section>
-                <q-item-label>Videos</q-item-label>
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-btn-dropdown>
+        <!-- 
+          用户头像 
+          @userName 用户名 String
+          @avatarActions 用户头像下拉菜单 Array
+            @title 菜单标题 String
+            @handler 菜单点击事件 Function
+          @avatarURL 用户头像 URL String
+          @register 注册事件 Function
+          @show 是否显示 Boolean
+        -->
+        <TopAvatar 
+          :userName="username"
+          :avatarActions="avatarActions"
+          :avatarURL="avatarURL"
+          show
+        />
       </q-toolbar>
     </q-header>
 
@@ -83,6 +73,8 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
+import TopAvatar from 'components/TopAvatar.vue';
+
 
 const linksList = [
   {
@@ -133,15 +125,38 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    EssentialLink,
+    TopAvatar
   },
 
   setup () {
+    const username = "hello"
+
+    const avatarActions = [
+      {
+        title: 'Photos',
+        icon: 'photo',
+        handler: () => {
+          console.log('Photos');
+        }
+      },
+      {
+        title: 'Videos',
+        icon: 'videocam',
+        handler: () => {
+          console.log('Videos');
+        }
+      }
+    ];
     const leftDrawerOpen = ref(false)
+    const avatarURL = "assets/avatar.jpg"
 
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
+      username,
+      avatarURL,
+      avatarActions,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
       }
