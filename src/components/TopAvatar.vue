@@ -2,10 +2,17 @@
   <div v-if="show">
     <q-btn-dropdown
       flat
-      dense>
+      dense
+      no-caps
+      size="sm"
+    >
       <template v-slot:label>
-        <q-chip>
-          <q-avatar>
+        <q-chip
+          size="sm"
+        >
+          <q-avatar
+            size="sm"
+          >
             <img :src="avatarURL">
           </q-avatar>
           {{ userName }}

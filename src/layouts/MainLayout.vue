@@ -149,7 +149,7 @@ export default defineComponent({
       }
     ];
     const leftDrawerOpen = ref(false)
-    const avatarURL = "assets/avatar.jpg"
+    const avatarURL = "public/icons/avatar.jpg"
 
     return {
       essentialLinks: linksList,
