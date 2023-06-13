@@ -42,7 +42,7 @@
 
 <script lang="ts" setup>
 
-const info = defineProps({
+defineProps({
   show: {
     type: Boolean,
     default: false

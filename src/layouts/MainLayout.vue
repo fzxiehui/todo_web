@@ -141,7 +141,7 @@ export default defineComponent({
   },
 
   setup () {
-    const username = "hello"
+    const username = 'hello'
 
     const avatarActions = [
       {
@@ -160,7 +160,7 @@ export default defineComponent({
       }
     ];
     const leftDrawerOpen = ref(false)
-    const avatarURL = "public/icons/avatar.jpg"
+    const avatarURL = 'icons/avatar.jpg'
     const text = '' 
 
     return {
