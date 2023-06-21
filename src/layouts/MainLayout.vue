@@ -64,7 +64,7 @@
           />
         </q-item-label>
         <EssentialLink
-          v-for="link in essentialLinks"
+          v-for="link in linksList"
           :key="link.title"
           v-bind="link"
         />
@@ -78,14 +78,14 @@
   </q-layout>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { defineComponent, ref } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
 import TopAvatar from 'components/TopAvatar.vue';
 import TodoSearch from 'components/TodoSearch.vue';
 
 
-const linksList = [
+const linksList = ref([
   {
     title: 'Docs',
     caption: 'quasar.dev',
@@ -128,58 +128,33 @@ const linksList = [
     icon: 'favorite',
     link: 'https://awesome.quasar.dev'
   }
-];
+]);
 
-export default defineComponent({
-  name: 'MainLayout',
+const username = 'hello'
 
-  components: {
-    EssentialLink,
-    TopAvatar,
-    TodoSearch
+const avatarActions = [
+  {
+    title: 'Photos',
+    icon: 'photo',
+    handler: () => {
+      console.log('Photos');
+    }
   },
-
-
-  setup () {
-    const username = 'hello'
-
-    const avatarActions = [
-      {
-        title: 'Photos',
-        icon: 'photo',
-        handler: () => {
-          console.log('Photos');
-        }
-      },
-      {
-        title: 'Videos',
-        icon: 'videocam',
-        handler: () => {
-          console.log('Videos');
-        }
-      }
-    ];
-    const leftDrawerOpen = ref(false)
-    const avatarURL = 'icons/avatar.jpg'
-    const text = '' 
-
-    function searchHandler (value: string) {
-      console.log('searchHandler')
-      console.log(value)
-    };
-
-    return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      username,
-      text,
-      avatarURL,
-      avatarActions,
-      searchHandler,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
+  {
+    title: 'Videos',
+    icon: 'videocam',
+    handler: () => {
+      console.log('Videos');
     }
   }
-});
+];
+
+const leftDrawerOpen = ref(false)
+const avatarURL = 'icons/avatar.jpg'
+const text = '' 
+
+function searchHandler (value: string) {
+  console.log('searchHandler')
+  console.log(value)
+};
 </script>
