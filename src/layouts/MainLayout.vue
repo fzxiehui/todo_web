@@ -33,6 +33,7 @@
           @register 注册事件 Function
           @show 是否显示 Boolean
         -->
+
         <TopAvatar 
           :userName="username"
           :avatarActions="avatarActions"
@@ -53,18 +54,14 @@
           header
         >
           TODO List
-          <q-input bottom-slots v-model="text" label="Search" counter :dense="dense">
-            <template v-slot:prepend>
-              <q-icon name="search" />
-            </template>
-            <template v-slot:append>
-              <q-icon name="close" @click="text = ''" class="cursor-pointer"></q-icon>
-            </template>
 
-            <template v-slot:hint>
-              Please enter the keyword.
-            </template>
-          </q-input>
+          <!-- 
+            代办事项搜索框
+            @searchHandler 搜索事件 Function 必填
+          -->
+          <TodoSearch 
+            :searchHandler="searchHandler"
+          />
         </q-item-label>
         <EssentialLink
           v-for="link in essentialLinks"
@@ -85,6 +82,7 @@
 import { defineComponent, ref } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
 import TopAvatar from 'components/TopAvatar.vue';
+import TodoSearch from 'components/TodoSearch.vue';
 
 
 const linksList = [
@@ -137,8 +135,10 @@ export default defineComponent({
 
   components: {
     EssentialLink,
-    TopAvatar
+    TopAvatar,
+    TodoSearch
   },
+
 
   setup () {
     const username = 'hello'
@@ -163,6 +163,11 @@ export default defineComponent({
     const avatarURL = 'icons/avatar.jpg'
     const text = '' 
 
+    function searchHandler (value: string) {
+      console.log('searchHandler')
+      console.log(value)
+    };
+
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
@@ -170,6 +175,7 @@ export default defineComponent({
       text,
       avatarURL,
       avatarActions,
+      searchHandler,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
       }
