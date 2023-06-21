@@ -18,7 +18,11 @@
       v-if="searchText"
       v-slot:append
     >
-      <q-icon name="close" @click="searchText = ''" class="cursor-pointer"></q-icon>
+      <q-icon 
+        name="close" 
+        @click="closeSearch" 
+        class="cursor-pointer"
+      />
     </template>
 
     <!-- 搜索框提示 -->
@@ -35,12 +39,24 @@
 
 import { ref } from 'vue'
 
-defineProps({
+var searchText = ref('')
+
+var deliver = defineProps({
   searchHandler: {
     type: Function,
     required: true
-  }
+  },
+	closeHandler: {
+		type: Function,
+		required: false
+	}
 })
 
-var searchText = ref('')
+function closeSearch() {
+  searchText.value = ''
+	if (deliver.closeHandler) {
+		deliver.closeHandler()
+	}
+}
+
 </script>

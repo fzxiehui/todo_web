@@ -61,12 +61,15 @@
           -->
           <TodoSearch 
             :searchHandler="searchHandler"
+            :closeHandler="closeHandler"
           />
         </q-item-label>
-        <EssentialLink
-          v-for="link in linksList"
-          :key="link.title"
-          v-bind="link"
+
+        <ToDoList
+          :todoList="todoList"
+          :temporaryList="temporaryList"
+          :clickHandler="clickHandler"
+          :loading="searchloading"
         />
       </q-list>
     </q-drawer>
@@ -79,56 +82,39 @@
 </template>
 
 <script lang="ts" setup>
-import { defineComponent, ref } from 'vue';
-import EssentialLink from 'components/EssentialLink.vue';
+import { ref } from 'vue';
 import TopAvatar from 'components/TopAvatar.vue';
 import TodoSearch from 'components/TodoSearch.vue';
+import ToDoList from 'components/ToDoList.vue';
 
+var searchloading = ref(false);
 
-const linksList = ref([
+const todoList = ref([
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
+    id: 1,
     icon: 'school',
-    link: 'https://quasar.dev'
+    title: '罗老师',
+    desc: '罗老师刑法小课堂',
+    done: false
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
+    id: 2,
+    icon: 'school',
+    title: '张三',
+    desc: '张三现身说法',
+    done: false
   },
   {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
+    id: 3,
+    icon: 'build',
+    title: '专业名词',
+    desc: '很刑,可拷',
+    done: false
   }
 ]);
+
+const temporaryList = ref([]);
+
 
 const username = 'hello'
 
@@ -151,10 +137,26 @@ const avatarActions = [
 
 const leftDrawerOpen = ref(false)
 const avatarURL = 'icons/avatar.jpg'
-const text = '' 
+// const text = '' 
 
 function searchHandler (value: string) {
   console.log('searchHandler')
+  searchloading.value = true
   console.log(value)
 };
+
+function clickHandler (item: any) {
+  console.log('clickHandler')
+  console.log(item)
+};
+
+function closeHandler () {
+  console.log('closeHandler')
+  searchloading.value = false
+};
+
+function toggleLeftDrawer () {
+  leftDrawerOpen.value = !leftDrawerOpen.value
+};
+
 </script>
