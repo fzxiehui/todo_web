@@ -6,12 +6,14 @@
     counter 
   >
 
+    <!-- 搜索框前置图标 -->
     <template 
       v-slot:prepend
     >
       <q-icon name="search" />
     </template>
 
+    <!-- 搜索框后置图标 -->
     <template 
       v-if="searchText"
       v-slot:append
@@ -19,6 +21,7 @@
       <q-icon name="close" @click="searchText = ''" class="cursor-pointer"></q-icon>
     </template>
 
+    <!-- 搜索框提示 -->
     <template 
       v-slot:hint
     >
@@ -40,12 +43,4 @@ defineProps({
 })
 
 var searchText = ref('')
-// const options = ['很刑', '可拷']
-// const history = ['罗老师', '刑法课堂', 'todo']
-
-// function updateSearchText (value: string) {
-//  console.log(searchText.value)
-// }
-
-
 </script>
