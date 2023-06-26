@@ -40,6 +40,7 @@
           :avatarURL="avatarURL"
           show
         />
+        <UserLogin/>
       </q-toolbar>
     </q-header>
 
@@ -86,6 +87,7 @@ import { ref } from 'vue';
 import TopAvatar from 'components/TopAvatar.vue';
 import TodoSearch from 'components/TodoSearch.vue';
 import ToDoList from 'components/ToDoList.vue';
+import UserLogin from 'components/UserLogin.vue';
 
 var searchloading = ref(false);
 
