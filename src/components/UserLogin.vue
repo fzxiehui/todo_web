@@ -62,7 +62,7 @@ import { ref } from 'vue';
 import { useUserStore } from 'stores/user';
 
 const store = useUserStore();
-const show = ref(true);
+const show = ref(false);
 const username = ref('');
 const password = ref('');
 const visible = ref(false);

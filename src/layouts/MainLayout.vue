@@ -41,6 +41,7 @@
           show
         />
         <UserLogin/>
+        <UserRegister/>
       </q-toolbar>
     </q-header>
 
@@ -88,6 +89,7 @@ import TopAvatar from 'components/TopAvatar.vue';
 import TodoSearch from 'components/TodoSearch.vue';
 import ToDoList from 'components/ToDoList.vue';
 import UserLogin from 'components/UserLogin.vue';
+import UserRegister from 'components/UserRegister.vue';
 
 var searchloading = ref(false);
 
