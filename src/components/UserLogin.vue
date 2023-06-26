@@ -59,7 +59,9 @@
 <script lang="ts" setup>
 
 import { ref } from 'vue';
+import { useUserStore } from 'stores/user';
 
+const store = useUserStore();
 const show = ref(true);
 const username = ref('');
 const password = ref('');
@@ -72,6 +74,16 @@ const closeHandler = () => {
 const submitHandler = () => {
   console.log('submit');
   visible.value = true;
+  const { userLogin } = store;
+  userLogin(username.value, password.value)
+    .then((res) => {
+      visible.value = false;
+      show.value = false;
+    })
+    .catch((err) => {
+      visible.value = false;
+    });
+
 };
 
 
