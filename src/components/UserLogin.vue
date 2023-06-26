@@ -74,15 +74,16 @@ const closeHandler = () => {
 const submitHandler = () => {
   console.log('submit');
   visible.value = true;
-  const { userLogin } = store;
-  userLogin(username.value, password.value)
-    .then((res) => {
-      visible.value = false;
-      show.value = false;
-    })
-    .catch((err) => {
-      visible.value = false;
-    });
+  const { login } = store;
+  login(username.value, password.value).then((res) => {
+    console.log(res);
+    visible.value = false;
+    show.value = false;
+  })
+  .catch((err) => {
+    console.log(err);
+    visible.value = false;
+  });
 
 };
 
