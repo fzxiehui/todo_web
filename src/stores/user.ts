@@ -33,12 +33,12 @@ export const useUserStore = defineStore('user', {
     setToken(token: string) {
       this.token = token;
     },
-    async login(username: string, password: string):
+    async login(params: { username: string, password: string }): 
       Promise<GetUserInfoModel | null> {
       try {
         const { data } = await loginAPI({
-          username: username, 
-          password: password
+          username: params.username, 
+          password: params.password
         });
         this.setUserName(data.username);
         this.setNickName(data.nickname);

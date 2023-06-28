@@ -19,29 +19,8 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title>
-          TODO
-        </q-toolbar-title>
+        <TitleIndex />
 
-        <!-- 
-          用户头像 
-          @userName 用户名 String
-          @avatarActions 用户头像下拉菜单 Array
-            @title 菜单标题 String
-            @handler 菜单点击事件 Function
-          @avatarURL 用户头像 URL String
-          @register 注册事件 Function
-          @show 是否显示 Boolean
-        -->
-
-        <TopAvatar 
-          :userName="username"
-          :avatarActions="avatarActions"
-          :avatarURL="avatarURL"
-          show
-        />
-        <UserLogin/>
-        <UserRegister/>
       </q-toolbar>
     </q-header>
 
@@ -85,11 +64,9 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-import TopAvatar from 'components/TopAvatar.vue';
 import TodoSearch from 'components/TodoSearch.vue';
 import ToDoList from 'components/ToDoList.vue';
-import UserLogin from 'components/UserLogin.vue';
-import UserRegister from 'components/UserRegister.vue';
+import TitleIndex from 'src/pages/title/TitleIndex.vue';
 
 var searchloading = ref(false);
 
