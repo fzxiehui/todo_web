@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { loginAPI } from '/src/api/user';
+import { loginAPI, registerAPI } from '/src/api/user';
 import { GetUserInfoModel } from '/src/api/user/model/userModel';
 
 export const useUserStore = defineStore('user', {
@@ -39,6 +39,28 @@ export const useUserStore = defineStore('user', {
         const { data } = await loginAPI({
           username: username, 
           password: password
+        });
+        this.setUserName(data.username);
+        this.setNickName(data.nickname);
+        this.setToken(data.token);
+        return data;
+      } catch (error) {
+        return error;
+      }
+    },
+    async logout() {
+      this.setUserName('');
+      this.setNickName('');
+      this.setToken('');
+    },
+    async register(username: string, 
+                   password: string, nickname: string):
+      Promise<GetUserInfoModel | null> {
+      try {
+        const { data } = await registerAPI({
+          username: username,
+          password: password,
+          nickname: nickname
         });
         this.setUserName(data.username);
         this.setNickName(data.nickname);

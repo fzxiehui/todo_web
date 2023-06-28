@@ -61,7 +61,6 @@
               label="注册"
               color="primary"
               type="submit"
-              @click="submitHandler"
             >
               <q-tooltip class="bg-red" :offset="[10, 10]">
                 Register
@@ -86,7 +85,10 @@
 
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
+import { useUserStore } from 'stores/user';
+
+const store = useUserStore();
 
 const show = ref(true)
 const visible = ref(false)
@@ -101,10 +103,16 @@ const closeHandler = () => {
 }
 
 const submitHandler = () => {
-  setTimeout(() => {
+  visible.value = true
+  const { register } = store
+  register(username.value,
+    password.value, nickname.value).then(() => {
     visible.value = false
     show.value = false
-  }, 2000)
+  }).catch(() => {
+    visible.value = false
+  })
+  
 }
 
 </script>
